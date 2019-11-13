@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarMovement : MonoBehaviour
 {
+
 
     float[] myCoords;
     Vector2 newPos;
     int positionCounter = 0;
     public int LanePosition;
+
 
     // 0 = Left, 1 = Center, 2 = Right
     // Value is points car goes to
@@ -32,6 +35,9 @@ public class CarMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Update car speed based on slider value
+        float speed = (Inputs._instance.avg_car_speed.value / 15f);
+
         // Update Coords
         if (transform.position.x == myCoords[0] && transform.position.y == myCoords[1])
         {
@@ -41,8 +47,8 @@ public class CarMovement : MonoBehaviour
         // Move Car
         else {
 
-            //float step = speed * Time.deltaTime;
-            float step = 1f * Time.deltaTime;
+            float step = speed * Time.deltaTime;
+            //float step = 1f * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, newPos, step);
         }
 

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class Inputs : MonoBehaviour
 {
+
+    // Create instance of class to access from other classes
+    public static Inputs _instance;
+
     // Initialize all Input Fields From UI
     public InputField north_cars_per_second;
     public InputField south_cars_per_second;
@@ -88,6 +92,13 @@ public class Inputs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (_instance != null && _instance != this) {
+            Debug.Log("BAD INSTANCE");
+        }
+        else {
+            _instance = this;
+        }
+
         Debug.Log(time_cars);
         Debug.Log(time_percentage);
 
