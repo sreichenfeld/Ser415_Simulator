@@ -26,6 +26,7 @@ public class Inputs : MonoBehaviour
     // Check if Time Value has changed
     public int lastTime;
 
+
     // {KEY, {Value}}
     // EXAMPLE = {Time of Day, {Traffic Flow, north_cars_per_second, south_cars_per_second, east_cars_per_second, 
     //          west_cars_per_second, avg_car_speed, wrecklessness, car_start_lag}}
@@ -109,6 +110,7 @@ public class Inputs : MonoBehaviour
             lastTime = Convert.ToInt32(time_of_day.text);
         }   
     }
+    
 
     // Takes time and dictionary to undate input fields
     public void get_time_cars_info(int time, Dictionary<int, List<float>> myDictionary) {
