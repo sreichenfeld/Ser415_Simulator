@@ -35,30 +35,30 @@ public class Inputs : MonoBehaviour
     // EXAMPLE = {Time of Day, {Traffic Flow, north_cars_per_second, south_cars_per_second, east_cars_per_second, 
     //          west_cars_per_second, avg_car_speed, wrecklessness, car_start_lag}}
     public Dictionary<int, List<float>> time_cars = new Dictionary<int, List<float>>() {
-        {0, new List<float>() { 0.1f, 10f, 20f, 30f, 40f, 0f, 50f, 2f}},
-        {1, new List<float>() { 0.1f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {2, new List<float>() { 0.1f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {3, new List<float>() { 0.1f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {4, new List<float>() { 0.2f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {5, new List<float>() { 0.3f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {6, new List<float>() { 0.5f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {7, new List<float>() { 0.6f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {8, new List<float>() { 0.6f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {9, new List<float>() { 0.5f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {10, new List<float>() { 0.5f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {11, new List<float>() { 0.7f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {12, new List<float>() { 0.9f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {13, new List<float>() { 0.9f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {14, new List<float>() { 0.8f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {15, new List<float>() { 0.9f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {16, new List<float>() { 0.8f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {17, new List<float>() { 0.9f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {18, new List<float>() { 0.8f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {19, new List<float>() { 0.6f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {20, new List<float>() { 0.5f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {21, new List<float>() { 0.5f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {22, new List<float>() { 0.3f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
-        {23, new List<float>() { 0.1f, 100f, 200f, 300f, 400f, 25f, 1f, 0.1f}},
+        {0, new List<float>() { 0.1f, 0.1f, 0.2f, 0.3f, 0.25f, 25f, 50f, 2f}},
+        {1, new List<float>() { 0.1f, 0.2f, 0.21f, 0.1f, 0.05f, 25f, 1f, 0.1f}},
+        {2, new List<float>() { 0.1f, 0.05f, 0.75f, 0.1f, 0.15f, 25f, 1f, 0.1f}},
+        {3, new List<float>() { 0.1f, 0.1f, 0.03f, 0.03f, 0.04f, 25f, 1f, 0.1f}},
+        {4, new List<float>() { 0.2f, 0.2f, 0.13f, 0.12f, 0.18f, 25f, 1f, 0.1f}},
+        {5, new List<float>() { 0.3f, 0.45f, 0.3f, 0.25f, 0.32f, 25f, 1f, 0.1f}},
+        {6, new List<float>() { 0.5f, 0.5f, 0.48f, 0.38f, 0.7f, 25f, 1f, 0.1f}},
+        {7, new List<float>() { 0.6f, 0.6f, 0.62f, 0.52f, 0.54f, 25f, 1f, 0.1f}},
+        {8, new List<float>() { 0.6f, 0.54f, 0.65f, 0.65f, 0.7f, 25f, 1f, 0.1f}},
+        {9, new List<float>() { 0.5f, 0.45f, 0.54f, 0.6f, 0.58f, 25f, 1f, 0.1f}},
+        {10, new List<float>() { 0.5f, 0.5f, 0.48f, 0.38f, 0.7f, 25f, 1f, 0.1f}},
+        {11, new List<float>() { 0.7f, 0.7f, 0.72f, 0.8f, 0.78f, 25f, 1f, 0.1f}},
+        {12, new List<float>() { 0.9f, 0.9f, 0.98f, 0.85f, 0.89f, 25f, 1f, 0.1f}},
+        {13, new List<float>() { 0.9f, 0.83f, 0.87f, 0.95f, 0.93f, 25f, 1f, 0.1f}},
+        {14, new List<float>() { 0.8f, 0.74f, 0.78f, 0.81f, 0.79f, 25f, 1f, 0.1f}},
+        {15, new List<float>() { 0.9f, 0.99f, 0.92f, 0.87f, 0.95f, 25f, 1f, 0.1f}},
+        {16, new List<float>() { 0.8f, 0.7f, 0.72f, 0.76f, 0.83f, 25f, 1f, 0.1f}},
+        {17, new List<float>() { 0.9f, 0.83f, 0.87f, 0.95f, 0.93f, 25f, 1f, 0.1f}},
+        {18, new List<float>() { 0.8f, 0.74f, 0.78f, 0.81f, 0.79f, 25f, 1f, 0.1f}},
+        {19, new List<float>() { 0.6f, 0.54f, 0.65f, 0.65f, 0.7f, 25f, 1f, 0.1f}},
+        {20, new List<float>() { 0.5f, 0.5f, 0.48f, 0.38f, 0.7f, 25f, 1f, 0.1f}},
+        {21, new List<float>() { 0.5f, 0.5f, 0.48f, 0.38f, 0.7f, 25f, 1f, 0.1f}},
+        {22, new List<float>() { 0.3f, 0.45f, 0.3f, 0.25f, 0.32f, 25f, 1f, 0.1f}},
+        {23, new List<float>() { 0.1f, 0.2f, 0.21f, 0.1f, 0.05f, 25f, 1f, 0.1f}},
     };
     // {Key, {Value}}
     // {time_of_day, {north_percentage [], south_percentage [], east_percentage [], west_percentage []}}
@@ -101,7 +101,6 @@ public class Inputs : MonoBehaviour
 
         Debug.Log(time_cars);
         Debug.Log(time_percentage);
-
 
         // Initilize lastTime
         lastTime = Convert.ToInt32(time_of_day.text);
