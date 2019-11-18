@@ -2451,6 +2451,7 @@ GameObject:
   - component: {fileID: 682670065}
   - component: {fileID: 682670064}
   - component: {fileID: 682670067}
+  - component: {fileID: 682670068}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2548,6 +2549,19 @@ MonoBehaviour:
   wrecklessness: {fileID: 1427989371}
   car_start_lag: {fileID: 443125915}
   lastTime: 0
+--- !u!114 &682670068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682670063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb1dff27efaef146a203852080cb5dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 3297831094188509956, guid: 922d5ef96981a2d44bc202a4afca48ef, type: 3}
 --- !u!1 &715223920
 GameObject:
   m_ObjectHideFlags: 0
