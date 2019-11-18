@@ -1379,6 +1379,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3297831094188509956, guid: 922d5ef96981a2d44bc202a4afca48ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Car_Object (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 3601727732230070851, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}
       propertyPath: m_BodyType
@@ -1393,11 +1398,6 @@ PrefabInstance:
         type: 3}
       propertyPath: LanePosition
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297831094188509956, guid: 922d5ef96981a2d44bc202a4afca48ef,
-        type: 3}
-      propertyPath: m_Name
-      value: Car_Object (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3297831094188509962, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}
@@ -2634,15 +2634,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7805866440488037125, guid: 922d5ef96981a2d44bc202a4afca48ef,
-        type: 3}
-      propertyPath: LanePosition
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3297831094188509956, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}
       propertyPath: m_Name
       value: Car_Object (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805866440488037125, guid: 922d5ef96981a2d44bc202a4afca48ef,
+        type: 3}
+      propertyPath: LanePosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3297831094188509962, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}

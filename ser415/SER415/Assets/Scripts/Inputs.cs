@@ -90,7 +90,7 @@ public class Inputs : MonoBehaviour
     };
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (_instance != null && _instance != this) {
             Debug.Log("BAD INSTANCE");

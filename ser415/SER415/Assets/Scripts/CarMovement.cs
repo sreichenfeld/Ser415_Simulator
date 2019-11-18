@@ -11,6 +11,7 @@ public class CarMovement : MonoBehaviour
     Vector2 newPos;
     int positionCounter = 0;
     public int LanePosition;
+    public string direction;
 
 
     // 0 = Left, 1 = Center, 2 = Right
