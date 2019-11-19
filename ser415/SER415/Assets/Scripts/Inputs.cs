@@ -90,7 +90,7 @@ public class Inputs : MonoBehaviour
     };
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (_instance != null && _instance != this) {
             Debug.Log("BAD INSTANCE");
@@ -122,7 +122,7 @@ public class Inputs : MonoBehaviour
     }
     
 
-    // Takes time and dictionary to undate input fields
+    // Takes time and dictionary to update input fields
     public void get_time_cars_info(int time, Dictionary<int, List<float>> myDictionary) {
         List<float> inputsArray;
         if (myDictionary.ContainsKey(time))
@@ -146,7 +146,7 @@ public class Inputs : MonoBehaviour
             car_start_lag.value = 0.1f;
         }
     }
-    // Takes time and dictionary to undate input fields
+    // Takes time and dictionary to update input fields
     public void get_time_percetage_info(int time, Dictionary<int, List<float[]>> myDictionary) {
         List<float[]> inputsArray;
         if (myDictionary.ContainsKey(time))
