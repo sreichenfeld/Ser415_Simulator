@@ -74,7 +74,7 @@ public class Inputs : MonoBehaviour
     // {time_of_day, {north_percentage [], south_percentage [], east_percentage [], west_percentage []}}
     public Dictionary<int, List<float[]>> time_percentage = new Dictionary<int, List<float[]>>() {
         {0, new List<float[]>{ new float[] {0f, 90f, 10f}, new float[] {5f, 95f, 0f}, new float[] {5f, 85f, 10f}, new float[] {15f, 80f, 5f} }},
-        {1, new List<float[]>{ new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f} }},
+        {1, new List<float[]>{ new float[] {35f, 30f, 35f}, new float[] {35f, 30f, 35f}, new float[] {35f, 30f, 35f}, new float[] {35f, 30f, 35f} }},
         {2, new List<float[]>{ new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f} }},
         {3, new List<float[]>{ new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f} }},
         {4, new List<float[]>{ new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f}, new float[] {5f, 90f, 5f} }},
