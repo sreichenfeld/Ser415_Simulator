@@ -1399,6 +1399,11 @@ PrefabInstance:
       propertyPath: LanePosition
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7805866440488037125, guid: 922d5ef96981a2d44bc202a4afca48ef,
+        type: 3}
+      propertyPath: direction
+      value: N
+      objectReference: {fileID: 0}
     - target: {fileID: 3297831094188509962, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2657,6 +2662,11 @@ PrefabInstance:
         type: 3}
       propertyPath: LanePosition
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805866440488037125, guid: 922d5ef96981a2d44bc202a4afca48ef,
+        type: 3}
+      propertyPath: direction
+      value: N
       objectReference: {fileID: 0}
     - target: {fileID: 3297831094188509962, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}
@@ -4326,7 +4336,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1243667158
 RectTransform:
@@ -7455,6 +7465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Car_Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805866440488037125, guid: 922d5ef96981a2d44bc202a4afca48ef,
+        type: 3}
+      propertyPath: direction
+      value: N
       objectReference: {fileID: 0}
     - target: {fileID: 3297831094188509962, guid: 922d5ef96981a2d44bc202a4afca48ef,
         type: 3}
