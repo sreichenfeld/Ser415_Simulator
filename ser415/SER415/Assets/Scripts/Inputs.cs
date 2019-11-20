@@ -18,10 +18,20 @@ public class Inputs : MonoBehaviour
 
     public InputField time_of_day;
 
-    public InputField north_percentage;
-    public InputField south_percentage;
-    public InputField east_percentage;
-    public InputField west_percentage;
+    public InputField north_percentage_left;
+    public InputField south_percentage_left;
+    public InputField east_percentage_left;
+    public InputField west_percentage_left;
+
+    public InputField north_percentage_center;
+    public InputField south_percentage_center;
+    public InputField east_percentage_center;
+    public InputField west_percentage_center;
+
+    public InputField north_percentage_right;
+    public InputField south_percentage_right;
+    public InputField east_percentage_right;
+    public InputField west_percentage_right;
 
     public Slider avg_car_speed;
     public Slider wrecklessness;
@@ -153,16 +163,46 @@ public class Inputs : MonoBehaviour
         {
             inputsArray = myDictionary[time];
             // Set Percentage Input field based on Int time Given
-            north_percentage.text = '{' + inputsArray[0][0].ToString() + ',' + inputsArray[0][1].ToString() + ',' + inputsArray[0][2].ToString() + '}';
-            south_percentage.text = '{' + inputsArray[1][0].ToString() + ',' + inputsArray[1][1].ToString() + ',' + inputsArray[1][2].ToString() + '}';
-            east_percentage.text = '{' + inputsArray[2][0].ToString() + ',' + inputsArray[2][1].ToString() + ',' + inputsArray[2][2].ToString() + '}';
-            west_percentage.text = '{' + inputsArray[3][0].ToString() + ',' + inputsArray[3][1].ToString() + ',' + inputsArray[3][2].ToString() + '}';
-        }
+            //north_percentage.text = '{' + inputsArray[0][0].ToString() + ',' + inputsArray[0][1].ToString() + ',' + inputsArray[0][2].ToString() + '}';
+            //south_percentage.text = '{' + inputsArray[1][0].ToString() + ',' + inputsArray[1][1].ToString() + ',' + inputsArray[1][2].ToString() + '}';
+            //east_percentage.text = '{' + inputsArray[2][0].ToString() + ',' + inputsArray[2][1].ToString() + ',' + inputsArray[2][2].ToString() + '}';
+            //west_percentage.text = '{' + inputsArray[3][0].ToString() + ',' + inputsArray[3][1].ToString() + ',' + inputsArray[3][2].ToString() + '}';
+
+            north_percentage_left.text = inputsArray[0][0].ToString();
+            south_percentage_left.text = inputsArray[1][0].ToString();
+            east_percentage_left.text = inputsArray[2][0].ToString();
+            west_percentage_left.text = inputsArray[3][0].ToString();
+
+            north_percentage_center.text = inputsArray[0][1].ToString();
+            south_percentage_center.text = inputsArray[1][1].ToString();
+            east_percentage_center.text = inputsArray[2][1].ToString();
+            west_percentage_center.text = inputsArray[3][1].ToString();
+
+            north_percentage_right.text = inputsArray[0][2].ToString();
+            south_percentage_right.text = inputsArray[1][2].ToString();
+            east_percentage_right.text = inputsArray[2][2].ToString();
+            west_percentage_right.text = inputsArray[3][2].ToString();
+
+}
         else {
-            north_percentage.text = "Error";
-            south_percentage.text = "Error";
-            east_percentage.text = "ERROR";
-            west_percentage.text = "ERROR";
+            //north_percentage.text = "Error";
+            //south_percentage.text = "Error";
+            //east_percentage.text = "ERROR";
+            //west_percentage.text = "ERROR";
+            north_percentage_left.text = "ERROR";
+            south_percentage_left.text = "ERROR";
+            east_percentage_left.text = "ERROR";
+            west_percentage_left.text = "ERROR";
+
+            north_percentage_center.text = "ERROR";
+            south_percentage_center.text = "ERROR";
+            east_percentage_center.text = "ERROR";
+            west_percentage_center.text = "ERROR";
+
+            north_percentage_right.text = "ERROR";
+            south_percentage_right.text = "ERROR";
+            east_percentage_right.text = "ERROR";
+            west_percentage_right.text = "ERROR";
         }
     }
 }

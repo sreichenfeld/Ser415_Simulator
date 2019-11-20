@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 public class CarPlacement : MonoBehaviour
 {
@@ -27,6 +29,54 @@ public class CarPlacement : MonoBehaviour
         GameObject Inst = Instantiate(car, new Vector2(0, 0), Quaternion.identity);// as Inst.GetComponent <CarMovement>().lanePosition = 1;
         Inst.GetComponent<CarMovement>().LanePosition = Random.Range(0, 3);
         Inst.GetComponent<CarMovement>().direction = mydirection;
+
+        float left = 0;
+        float center = 0;
+        float right = 0;
+   
+        int ranNum = Random.Range(1, 101);
+
+        if (mydirection == "W")
+        {
+            left = float.Parse(Inputs._instance.west_percentage_left.text);
+            center = float.Parse(Inputs._instance.west_percentage_center.text);
+            right = float.Parse(Inputs._instance.west_percentage_right.text);
+        }
+        else if (mydirection == "E")
+        {
+            left = float.Parse(Inputs._instance.east_percentage_left.text);
+            center = float.Parse(Inputs._instance.east_percentage_center.text);
+            right = float.Parse(Inputs._instance.east_percentage_right.text);
+        }
+        else if (mydirection == "N")
+        {
+            left = float.Parse(Inputs._instance.north_percentage_left.text);
+            center = float.Parse(Inputs._instance.north_percentage_center.text);
+            right = float.Parse(Inputs._instance.north_percentage_right.text);
+        }
+        else if (mydirection == "S")
+        {
+            left = float.Parse(Inputs._instance.south_percentage_left.text);
+            center = float.Parse(Inputs._instance.south_percentage_center.text);
+            right = float.Parse(Inputs._instance.south_percentage_right.text);
+        }
+        else
+        {
+            Debug.Log("ERROR WITH DIRECTION");
+        }
+        
+        if (ranNum <= left)
+        {
+            Inst.GetComponent<CarMovement>().LanePosition = 0;
+        }
+        else if (ranNum >= (left + center))
+        {
+            Inst.GetComponent<CarMovement>().LanePosition = 2;
+        }
+        else {
+            Inst.GetComponent<CarMovement>().LanePosition = 1;
+        }
+        
     }
 
     private void FixedUpdate()
