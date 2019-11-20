@@ -6,21 +6,23 @@ using UnityEngine.UI;
 public class LightCycle : MonoBehaviour
 {
     public GameObject lights;
-    public LightCycle instance;
-    SpriteRenderer m_SpriteRenderer;
+    private SpriteRenderer m_SpriteRenderer;
     public int state = 0;
-    static Color[] cycles = new Color[] { Color.green, Color.yellow, Color.red };
+    public Sprite[] states = new Sprite[4];
+
+    //Turning, Green, Yellow Red,
+    //Direction State
+    public double[] TimeUntillNextLight = new double[4] { 3.0, 3.0, 1.0, 1.0 };
     float timer = 0;
+    bool NSEW = false;
     // Start is called before the first frame update
     void Start()
     {
+        lights.SetActive(true);
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        m_SpriteRenderer.color = Color.green;
-        if (this.instance == null)
-            {
-                this.instance = new LightCycle();
-                this.state = 0;
-            }
+        TimeUntillNextLight = new double[4] { 3.0, 3.0, 1.0, 1.0 };
+        this.state = 0;
+        m_SpriteRenderer.sprite = states[this.state];
         
     }
 
@@ -29,24 +31,26 @@ public class LightCycle : MonoBehaviour
     void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if (timer > 5)
+        if (timer > TimeUntillNextLight[this.state])
         {
             this.timer = 0;
             this.state++;
-            if (this.state > 2)
+
+            if (this.state > 3)
             {
                 this.state = 0;
+                this.NSEW = !this.NSEW;
+
             }
-            if (this.state == 0)
+            if (this.state == 0 && this.NSEW)
             {
-                m_SpriteRenderer.color = cycles[this.state];
-            } else if(this.state == 1)
-            {
-                m_SpriteRenderer.color = cycles[this.state];
-            } else if( this.state == 2)
-            {
-                m_SpriteRenderer.color = cycles[this.state];
+                gameObject.transform.Rotate(new Vector3(0, 0, 90));
             }
+            if (this.state == 1 && this.NSEW)
+            {
+                gameObject.transform.Rotate(new Vector3(0, 0, -90));
+            }
+            m_SpriteRenderer.sprite = states[this.state];
         }
     }
 }
