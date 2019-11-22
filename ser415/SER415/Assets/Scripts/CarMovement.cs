@@ -117,7 +117,14 @@ public class CarMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Destroy Car Object To Prevent Overload
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        if (collision.tag == "lane") {
+
+        }
+        if (collision.tag == "Finish")
+        {
+            Destroy(this.gameObject);
+        }
     }
    
 }
