@@ -35,7 +35,6 @@ public class LightCycle : MonoBehaviour
         {
             this.timer = 0;
             this.state++;
-
             if (this.state > 3)
             {
                 this.state = 0;
