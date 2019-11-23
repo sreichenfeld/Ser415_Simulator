@@ -30,13 +30,13 @@ public class CarMovement : MonoBehaviour
     };
 
 
-    public Dictionary<int, List<float[]>> east_directions = new Dictionary<int, List<float[]>>() {
+    public Dictionary<int, List<float[]>> west_directions = new Dictionary<int, List<float[]>>() {
         {0, new List<float[]>{ new float[] {-4.71f, 0.8f}, new float[] {1.94f, .97f}, new float[] {2.88f, 1.82f}, new float[] {3.42f, 3.32f}, new float[] {3.45f, 7.64f}}},
         {1, new List<float[]>{ new float[] {-4.88f, 0.06f}, new float[] {-1.18f, 0.1f}, new float[] {10.79f, 0.1f}}},
         {2, new List<float[]>{ new float[] {-4.87f, -0.66f}, new float[] {.59f, -.66f}, new float[] {.85f, -0.64f}, new float[] {.71f, -5.12f}}}
     };
 
-    public Dictionary<int, List<float[]>> west_directions = new Dictionary<int, List<float[]>>() {
+    public Dictionary<int, List<float[]>> east_directions = new Dictionary<int, List<float[]>>() {
         {0, new List<float[]>{ new float[] {10.67f, 1.54f}, new float[] {5.03f, 1.54f}, new float[] {3.9f, 0.91f}, new float[] {2.55f,-.52f}, new float[] {2.55f, -5.19f}}},
         {1, new List<float[]>{ new float[] {10.67f, 2.27f}, new float[] {6.93f, 2.27f}, new float[] {-4.66f, 2.27f}}},
         {2, new List<float[]>{ new float[] {10.67f, 2.98f}, new float[] {5.46f, 2.98f}, new float[] {5.08f, 3.98f}, new float[] {5.08f, 7.59f}}}
@@ -101,7 +101,7 @@ public class CarMovement : MonoBehaviour
         }
 
         float [] x = new float[] { float.Parse(inputsArray[positionCounter][0].ToString()), float.Parse(inputsArray[positionCounter][1].ToString()) };
-
+        
         // Increase Position Index
         if (positionCounter == inputsArray.Count - 1) {
             positionCounter = 0;
@@ -118,9 +118,68 @@ public class CarMovement : MonoBehaviour
     {
         // Destroy Car Object To Prevent Overload
         //Destroy(this.gameObject);
-        if (collision.tag == "lane") {
-
+        if (collision.tag == "N_C_Lane") {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
         }
+        if (collision.tag == "N_R_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "N_L_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "S_C_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "S_R_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "S_L_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "E_C_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "E_R_Lane")
+        {
+            Debug.Log("Hit");
+
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "E_L_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "W_C_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "W_R_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+        if (collision.tag == "W_L_Lane")
+        {
+            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+        }
+
         if (collision.tag == "Finish")
         {
             Destroy(this.gameObject);

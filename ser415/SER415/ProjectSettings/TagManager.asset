@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - N_C_Lane
+  - N_L_Lane
+  - N_R_Lane
+  - S_C_Lane
+  - S_L_Lane
+  - S_R_Lane
+  - E_C_Lane
+  - E_L_Lane
+  - W_C_Lane
+  - W_L_Lane
+  - W_R_Lane
+  - E_R_Lane
   layers:
   - Default
   - TransparentFX

@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LanePosition: 0
+  direction: 
 --- !u!61 &913840603545893511
 BoxCollider2D:
   m_ObjectHideFlags: 0
