@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class CarMovement : MonoBehaviour
 {
-
-
     float[] myCoords;
     Vector2 newPos;
     int positionCounter = 0;
     public int LanePosition;
     public string direction;
-
+    public float speed;
+    private Rigidbody2D rb;
+    public bool laneCarMove = false;
 
     // 0 = Left, 1 = Center, 2 = Right
     // Value is points car goes to
@@ -55,7 +55,7 @@ public class CarMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Update car speed based on slider value
-        float speed = (Inputs._instance.avg_car_speed.value / 15f);
+        speed = (Inputs._instance.avg_car_speed.value / 15f);
 
         // Update Coords
         if (transform.position.x == myCoords[0] && transform.position.y == myCoords[1])
@@ -64,13 +64,12 @@ public class CarMovement : MonoBehaviour
             newPos = new Vector2(myCoords[0], myCoords[1]);
         }
         // Move Car
-        else {
-
+        else
+        {
             float step = speed * Time.deltaTime;
             //float step = 1f * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, newPos, step);
         }
-
     }
 
     public float[] grabCoords(string cardinalDir)
@@ -100,90 +99,164 @@ public class CarMovement : MonoBehaviour
             Debug.Log("ERROR WITH DIRECTION");
         }
 
-        float [] x = new float[] { float.Parse(inputsArray[positionCounter][0].ToString()), float.Parse(inputsArray[positionCounter][1].ToString()) };
-        
+        float[] x = new float[] { float.Parse(inputsArray[positionCounter][0].ToString()), float.Parse(inputsArray[positionCounter][1].ToString()) };
+
         // Increase Position Index
-        if (positionCounter == inputsArray.Count - 1) {
+        if (positionCounter == inputsArray.Count - 1)
+        {
             positionCounter = 0;
-        } else
+        }
+        else
         {
             positionCounter += 1;
         }
-        
+
         // Return array of x, y coords
         return x;
     }
-    
+
+    IEnumerator laneStop(string curLane)
+    {
+        newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+
+        yield return new WaitForSeconds(5);
+
+        if(LightCycle._instance.directionText.text.ToString() != "E/W")
+        {
+            myCoords = grabCoords(direction);
+            newPos = new Vector2(myCoords[0], myCoords[1]);
+            float step = speed * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, newPos, step);
+        }
+
+
+    }
+
+    IEnumerator carHit()
+    {
+
+
+        newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+
+
+        yield return new WaitForSeconds(3);
+
+
+        //newPos = new Vector2(myCoords[0], myCoords[1]);
+        //float step = speed * Time.deltaTime;
+        //transform.position = Vector2.MoveTowards(transform.position, newPos, step);
+
+    }
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
+        float speed = (Inputs._instance.avg_car_speed.value / 15f);
+
         // Destroy Car Object To Prevent Overload
         //Destroy(this.gameObject);
-        if (collision.tag == "N_C_Lane") {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "N_R_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "N_L_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "S_C_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "S_R_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "S_L_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "E_C_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "E_R_Lane")
-        {
-            Debug.Log("Hit");
 
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "E_L_Lane")
+
+        if(LightCycle._instance.directionText.text == "E/W")
         {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            if (collision.tag == "Player")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+
+            }
+
+            if(LightCycle._instance.state != 3)
+            {
+                if (collision.tag == "N_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "S_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+            }
+            if (collision.tag == "N_R_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+            if (collision.tag == "N_C_Lane")
+            {
+                laneStop("E/W");
+            }
+
+            if (collision.tag == "S_C_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+            if (collision.tag == "S_R_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+
         }
-        if (collision.tag == "W_C_Lane")
+
+
+        if(LightCycle._instance.directionText.text == "N/S")
         {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            if (collision.tag == "Player")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+
+            }
+
+            if(LightCycle._instance.state != 3)
+            {
+                if (collision.tag == "W_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "E_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+
+            }
+
+
+            if (collision.tag == "E_C_Lane")
+            {
+                laneStop("N/S");
+
+            }
+            if (collision.tag == "E_R_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+
+            if (collision.tag == "W_C_Lane")
+            {
+                laneStop("N/S");
+            }
+            if (collision.tag == "W_R_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
         }
-        if (collision.tag == "W_R_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
-        if (collision.tag == "W_L_Lane")
-        {
-            newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-        }
+
 
         if (collision.tag == "Finish")
         {
             Destroy(this.gameObject);
         }
     }
-   
+
 }

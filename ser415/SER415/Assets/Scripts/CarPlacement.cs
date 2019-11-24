@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 public class CarPlacement : MonoBehaviour
-{
+{ 
+    public static CarPlacement _instance;
 
     public GameObject car;
 
@@ -19,9 +20,6 @@ public class CarPlacement : MonoBehaviour
             spawn(direction);
             //StartCoroutine(StartCounter(direction, float.Parse(Inputs._instance.north_cars_per_second.text)));
         }
-
-
-
     }
 
     public void spawn(string mydirection)

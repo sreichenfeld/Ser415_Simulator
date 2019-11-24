@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class LightCycle : MonoBehaviour
 {
+    public static LightCycle _instance;
+
     public GameObject lights;
     private SpriteRenderer m_SpriteRenderer;
     public int state = 0;
@@ -14,16 +16,17 @@ public class LightCycle : MonoBehaviour
 
     //Turning, Green, Yellow Red,
     //Direction State
-    public double[] TimeUntillNextLight = new double[4] { 3.0, 3.0, 1.0, 1.0 };
+    public double[] TimeUntillNextLight = new double[4] { 3.0, 3.0, 3.0, 3.0 };
     float timer = 0;
     bool NSEW = false;
     // Start is called before the first frame update
     void Start()
     {
+        _instance = this;
 
         lights.SetActive(true);
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        TimeUntillNextLight = new double[4] { 3.0, 3.0, 1.0, 1.0 };
+        TimeUntillNextLight = new double[4] { 3.0, 3.0, 3.0, 3.0 };
         this.state = 0;
         directionText.text = "N/S";
         m_SpriteRenderer.sprite = states[this.state];
@@ -35,10 +38,13 @@ public class LightCycle : MonoBehaviour
     void FixedUpdate()
     {
         timer += Time.deltaTime;
+
+
         if (timer > TimeUntillNextLight[this.state])
         {
             this.timer = 0;
             this.state++;
+            Debug.Log(state);
 
             if (this.state > 3)
             {
