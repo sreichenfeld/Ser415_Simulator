@@ -7,6 +7,7 @@ public class CarMovement : MonoBehaviour
 {
     float[] myCoords;
     Vector2 newPos;
+    Vector2 stalePos;
     int positionCounter = 0;
     public int LanePosition;
     public string direction;
@@ -62,8 +63,35 @@ public class CarMovement : MonoBehaviour
         {
             myCoords = grabCoords(direction);
             newPos = new Vector2(myCoords[0], myCoords[1]);
+            stalePos = new Vector2(myCoords[0], myCoords[1]);
         }
         // Move Car
+        else if (LightCycle._instance.directionText.text.ToString() == "E/W" && (direction == "E" || direction == "W") && newPos != stalePos) {
+            if (LightCycle._instance.state == 3 && LanePosition == 0) {
+                float step = speed * Time.deltaTime;
+                //float step = 1f * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
+            } else if (LightCycle._instance.state == 1 && (LanePosition == 1 || LanePosition == 2)) {
+                float step = speed * Time.deltaTime;
+                //float step = 1f * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
+            }
+        }
+        else if (LightCycle._instance.directionText.text.ToString() == "N/S" && (direction == "N" || direction == "S") && newPos != stalePos)
+        {
+            if (LightCycle._instance.state == 3 && LanePosition == 0)
+            {
+                float step = speed * Time.deltaTime;
+                //float step = 1f * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
+            }
+            else if (LightCycle._instance.state == 1 && (LanePosition == 1 || LanePosition == 2))
+            {
+                float step = speed * Time.deltaTime;
+                //float step = 1f * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
+            }
+        }
         else
         {
             float step = speed * Time.deltaTime;
@@ -155,10 +183,7 @@ public class CarMovement : MonoBehaviour
     {
         float speed = (Inputs._instance.avg_car_speed.value / 15f);
 
-        // Destroy Car Object To Prevent Overload
-        //Destroy(this.gameObject);
-
-
+     
         if(LightCycle._instance.directionText.text == "E/W")
         {
             if (collision.tag == "Player")
@@ -168,53 +193,8 @@ public class CarMovement : MonoBehaviour
 
             }
 
-            if(LightCycle._instance.state != 3)
-            {
-                if (collision.tag == "N_L_Lane")
-                {
-                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-                }
-                if (collision.tag == "S_L_Lane")
-                {
-                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-                }
-            }
-            if (collision.tag == "N_R_Lane")
-            {
-                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-            }
-            if (collision.tag == "N_C_Lane")
-            {
-                laneStop("E/W");
-            }
-
-            if (collision.tag == "S_C_Lane")
-            {
-                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-            }
-            if (collision.tag == "S_R_Lane")
-            {
-                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-            }
-
-        }
-
-
-        if(LightCycle._instance.directionText.text == "N/S")
-        {
-            if (collision.tag == "Player")
-            {
-                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
-
-            }
-
-            if(LightCycle._instance.state != 3)
+            // Stop Left turn for E/W
+            if (LightCycle._instance.state != 3)
             {
                 if (collision.tag == "W_L_Lane")
                 {
@@ -228,12 +208,96 @@ public class CarMovement : MonoBehaviour
                 }
 
             }
+            // Stop Left turn for N/S
+            if (LightCycle._instance.state != 3)
+            {
+                if (collision.tag == "N_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "S_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+            }
+            // Stop N/S Center and right lane
+            
+            if (collision.tag == "N_R_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+            if (collision.tag == "N_C_Lane")
+            {
+                //laneStop("E/W");
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+
+            if (collision.tag == "S_C_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+            if (collision.tag == "S_R_Lane")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+            }
+            
+
+        }
 
 
+        if(LightCycle._instance.directionText.text == "N/S")
+        {
+            if (collision.tag == "Player")
+            {
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+
+            }
+
+            // Stop Left turn for N/S
+            if (LightCycle._instance.state != 3)
+            {
+                if (collision.tag == "N_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "S_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+            }
+
+            // Stop Left turn for E/W
+            if (LightCycle._instance.state != 3)
+            {
+                if (collision.tag == "W_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "E_L_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+
+            }
+            // Stop E/W Center and right lane
+            
             if (collision.tag == "E_C_Lane")
             {
-                laneStop("N/S");
-
+                //laneStop("N/S");
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                //transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                transform.position = newPos;
             }
             if (collision.tag == "E_R_Lane")
             {
@@ -243,16 +307,46 @@ public class CarMovement : MonoBehaviour
 
             if (collision.tag == "W_C_Lane")
             {
-                laneStop("N/S");
+                //laneStop("N/S");
+                newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
             }
             if (collision.tag == "W_R_Lane")
             {
                 newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
             }
+
+            if (LightCycle._instance.state != 0) {
+                // Stop N/S Center and right lane
+
+                if (collision.tag == "N_R_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "N_C_Lane")
+                {
+                    //laneStop("E/W");
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+
+                if (collision.tag == "S_C_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+                if (collision.tag == "S_R_Lane")
+                {
+                    newPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    transform.position = Vector2.MoveTowards(transform.position, newPos, 0);
+                }
+            }
+            
         }
 
-
+        // Destory car
         if (collision.tag == "Finish")
         {
             Destroy(this.gameObject);
