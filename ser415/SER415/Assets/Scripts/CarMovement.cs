@@ -66,14 +66,14 @@ public class CarMovement : MonoBehaviour
         else if (LightCycle._instance.directionText.text.ToString() == "E/W" && (direction == "E" || direction == "W") && newPos != stalePos)
         {
 
-            if ((LightCycle._instance.state == 3 || LightCycle._instance.state == 4) && LanePosition == 0)
+            if ((LightCycle._instance.state == 3) && LanePosition == 0)
             {
 
                 float step = speed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
 
             }
-            else if ((LightCycle._instance.state == 0 || LightCycle._instance.state == 1) && (LanePosition == 1 || LanePosition == 2))
+            else if ((LightCycle._instance.state == 0) && (LanePosition == 1 || LanePosition == 2))
             {
                 float step = speed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
@@ -81,13 +81,13 @@ public class CarMovement : MonoBehaviour
         }
         else if (LightCycle._instance.directionText.text.ToString() == "N/S" && (direction == "N" || direction == "S") && newPos != stalePos)
         {
-            if ((LightCycle._instance.state == 3 || LightCycle._instance.state == 4) && LanePosition == 0)
+            if ((LightCycle._instance.state == 3) && LanePosition == 0)
             {
                 float step = speed * Time.deltaTime;
                 //float step = 1f * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
             }
-            else if ((LightCycle._instance.state == 0 || LightCycle._instance.state == 1) && (LanePosition == 1 || LanePosition == 2))
+            else if ((LightCycle._instance.state == 0) && (LanePosition == 1 || LanePosition == 2))
             {
                 float step = speed * Time.deltaTime;
                 //float step = 1f * Time.deltaTime;
