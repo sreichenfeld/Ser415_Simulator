@@ -109,11 +109,11 @@ public class Inputs : MonoBehaviour
     void default_light_times()
     {
         green_time.text = 10.ToString();
-        yellow_time.text = 10.ToString();
-        red_time.text = 10.ToString();
+        yellow_time.text = 5.ToString();
+        red_time.text = 3.ToString();
         left_green_time.text = 10.ToString();
-        left_yellow_time.text = 10.ToString();
-        left_red_time.text = 10.ToString();
+        left_yellow_time.text = 5.ToString();
+        left_red_time.text = 3.ToString();
     }
     
     // Start is called before the first frame update

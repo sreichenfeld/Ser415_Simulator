@@ -73,7 +73,7 @@ public class CarMovement : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
 
             }
-            else if (LightCycle._instance.state == 0 && (LanePosition == 1 || LanePosition == 2))
+            else if ((LightCycle._instance.state == 0 || LightCycle._instance.state == 1) && (LanePosition == 1 || LanePosition == 2))
             {
                 float step = speed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
@@ -87,7 +87,7 @@ public class CarMovement : MonoBehaviour
                 //float step = 1f * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, stalePos, step);
             }
-            else if (LightCycle._instance.state == 0 && (LanePosition == 1 || LanePosition == 2))
+            else if ((LightCycle._instance.state == 0 || LightCycle._instance.state == 1) && (LanePosition == 1 || LanePosition == 2))
             {
                 float step = speed * Time.deltaTime;
                 //float step = 1f * Time.deltaTime;
