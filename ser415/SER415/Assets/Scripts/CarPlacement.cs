@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 public class CarPlacement : MonoBehaviour
-{ 
+{
+    GameObject Inst;
     public static CarPlacement _instance;
 
     public GameObject car;
@@ -16,17 +17,28 @@ public class CarPlacement : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(carTime);
+            yield return new WaitForSeconds(1/carTime);
             spawn(direction);
-            //StartCoroutine(StartCounter(direction, float.Parse(Inputs._instance.north_cars_per_second.text)));
         }
     }
 
     public void spawn(string mydirection)
     {
-        GameObject Inst = Instantiate(car, new Vector2(0, 0), Quaternion.identity);// as Inst.GetComponent <CarMovement>().lanePosition = 1;
+        Inst = Instantiate(car, new Vector2(0, 0), Quaternion.identity);// as Inst.GetComponent <CarMovement>().lanePosition = 1;
         Inst.GetComponent<CarMovement>().LanePosition = Random.Range(0, 3);
         Inst.GetComponent<CarMovement>().direction = mydirection;
+
+
+
+        if (mydirection == "W")
+        {
+            Inst.transform.Rotate(0, 0, 90);
+        }
+
+        else if(mydirection == "E")
+        {
+            Inst.transform.Rotate(0, 0, 90);
+        }
 
         float left = 0;
         float center = 0;
@@ -94,7 +106,6 @@ public class CarPlacement : MonoBehaviour
         StartCoroutine(StartCounter("S", float.Parse(Inputs._instance.south_cars_per_second.text)));
         StartCoroutine(StartCounter("E", float.Parse(Inputs._instance.east_cars_per_second.text)));
         StartCoroutine(StartCounter("W", float.Parse(Inputs._instance.west_cars_per_second.text)));
-
 
     }
 

@@ -33,13 +33,19 @@ public class Inputs : MonoBehaviour
     public InputField east_percentage_right;
     public InputField west_percentage_right;
 
+    public InputField green_time;
+    public InputField yellow_time;
+    public InputField red_time;
+    public InputField left_green_time;
+    public InputField left_yellow_time;
+    public InputField left_red_time;
+
     public Slider avg_car_speed;
     public Slider wrecklessness;
     public Slider car_start_lag;
 
     // Check if Time Value has changed
     public int lastTime;
-
 
     // {KEY, {Value}}
     // EXAMPLE = {Time of Day, {Traffic Flow, north_cars_per_second, south_cars_per_second, east_cars_per_second, 
@@ -70,6 +76,7 @@ public class Inputs : MonoBehaviour
         {22, new List<float>() { 0.3f, 0.45f, 0.3f, 0.25f, 0.32f, 25f, 1f, 0.1f}},
         {23, new List<float>() { 0.1f, 0.2f, 0.21f, 0.1f, 0.05f, 25f, 1f, 0.1f}},
     };
+
     // {Key, {Value}}
     // {time_of_day, {north_percentage [], south_percentage [], east_percentage [], west_percentage []}}
     public Dictionary<int, List<float[]>> time_percentage = new Dictionary<int, List<float[]>>() {
@@ -98,7 +105,17 @@ public class Inputs : MonoBehaviour
         {22, new List<float[]>{ new float[] {1f, 90f, 9f}, new float[] {29f, 54f, 17f}, new float[] {30f, 50f, 20f}, new float[] {10f, 78f, 12f} }},
         {23, new List<float[]>{ new float[] {3f, 92f, 5f}, new float[] {8f, 60f, 32f}, new float[] {20f, 60f, 20f}, new float[] {9f, 61f, 30f} }},
     };
-
+    
+    void default_light_times()
+    {
+        green_time.text = 10.ToString();
+        yellow_time.text = 10.ToString();
+        red_time.text = 10.ToString();
+        left_green_time.text = 10.ToString();
+        left_yellow_time.text = 10.ToString();
+        left_red_time.text = 10.ToString();
+    }
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -117,6 +134,7 @@ public class Inputs : MonoBehaviour
         // Initilize Input Fields
         get_time_cars_info(Convert.ToInt32(time_of_day.text), time_cars);
         get_time_percetage_info(Convert.ToInt32(time_of_day.text), time_percentage);
+        default_light_times();
     }
 
     // Update is called once per frame
@@ -130,9 +148,7 @@ public class Inputs : MonoBehaviour
             lastTime = Convert.ToInt32(time_of_day.text);
         }   
     }
-    
-
-    // Takes time and dictionary to undate input fields
+    // Takes time and dictionary to update input fields
     public void get_time_cars_info(int time, Dictionary<int, List<float>> myDictionary) {
         List<float> inputsArray;
         if (myDictionary.ContainsKey(time))
@@ -145,6 +161,7 @@ public class Inputs : MonoBehaviour
             avg_car_speed.value = inputsArray[5];
             wrecklessness.value = inputsArray[6];
             car_start_lag.value = inputsArray[7];
+
         }
         else {
             north_cars_per_second.text = "Error";

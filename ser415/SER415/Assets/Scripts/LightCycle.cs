@@ -10,14 +10,15 @@ public class LightCycle : MonoBehaviour
     public GameObject lights;
     private SpriteRenderer m_SpriteRenderer;
     public int state = 0;
-    public Sprite[] states = new Sprite[4];
+    public Sprite[] states = new Sprite[6];
     public Text directionText;
     bool dir = true;
+    double g, y, r, lg, ly, lr;
 
-    //Turning, Green, Yellow Red,
+    //Turning, Green, Yellow, Red,
     //Direction State
-    public double[] TimeUntillNextLight = new double[4] { 3.0, 3.0, 3.0, 3.0 };
-    float timer = 0;
+    public double[] TimeUntillNextLight = new double[6] { 3.0, 3.0, 3.0, 3.0, 3.0, 3.0 };
+    public float timer = 0;
     bool NSEW = false;
     // Start is called before the first frame update
     void Start()
@@ -26,17 +27,35 @@ public class LightCycle : MonoBehaviour
 
         lights.SetActive(true);
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        TimeUntillNextLight = new double[4] { 3.0, 3.0, 3.0, 3.0 };
+        // TimeUntillNextLight = new double[6] { 7.0, 7.0, 7.0, 10.0, 3.0, 3.0 };
+        
         this.state = 0;
         directionText.text = "N/S";
         m_SpriteRenderer.sprite = states[this.state];
 
     }
+    void update_light_times()
+    {
+        if (!double.TryParse(Inputs._instance.green_time.text, out g))
+        {
+            
+        }
 
+        g = double.Parse(Inputs._instance.green_time.text);
+        y = double.Parse(Inputs._instance.yellow_time.text);
+        r = double.Parse(Inputs._instance.red_time.text);
+        lg = double.Parse(Inputs._instance.left_green_time.text);
+        ly = double.Parse(Inputs._instance.left_yellow_time.text);
+        lr = double.Parse(Inputs._instance.left_red_time.text);
+
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        update_light_times();
+        TimeUntillNextLight = new double[6] { g, y, r, lg, ly, lr };
+
         timer += Time.deltaTime;
 
 
@@ -46,10 +65,10 @@ public class LightCycle : MonoBehaviour
             this.state++;
             Debug.Log(state);
 
-            if (this.state > 3)
+            if (this.state > 5)
             {
                 this.state = 0;
-                //this.NSEW = !this.NSEW;
+
                 if (dir == true)
                 {
                     directionText.text = "E/W";
