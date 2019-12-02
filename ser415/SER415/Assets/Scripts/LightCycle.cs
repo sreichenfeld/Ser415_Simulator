@@ -32,7 +32,7 @@ public class LightCycle : MonoBehaviour
         this.state = 0;
         directionText.text = "N/S";
         m_SpriteRenderer.sprite = states[this.state];
-
+        Screen.fullScreen = false;
     }
     void update_light_times()
     {
